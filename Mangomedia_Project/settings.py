@@ -127,7 +127,7 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 PROJECT_DIR = os.path.dirname(os.path.abspath(__file__))
 STATICFILES_DIRS = os.path.join(BASE_DIR, 'static'),
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles_build', 'static')
-
+"""
 DATABASES = {
   'default': {
     'ENGINE': 'django.db.backends.postgresql',
@@ -136,8 +136,9 @@ DATABASES = {
     'PASSWORD': getenv('PGPASSWORD'),
     'HOST': getenv('PGHOST'),
     'PORT': getenv('PGPORT', 5432),
-   # 'OPTIONS': {
-   #   'sslmode': 'require',
-   # },
+    'OPTIONS': {
+      'sslmode': 'require',
+    },
   }
 }
+"""
