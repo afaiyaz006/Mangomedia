@@ -1,8 +1,0 @@
-{
-  "routes": [
-    {
-      "src": "/(.*)",
-      "dest": "Mangomedia_Project/wsgi.py"
-    }
-  ]
-}
