@@ -71,8 +71,8 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = "Mangomedia_Project.wsgi.application"
-
+#WSGI_APPLICATION = "Mangomedia_Project.wsgi.application"
+WSGI_APPLICATION = 'Mangomedia_Project.wsgi.app'
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
