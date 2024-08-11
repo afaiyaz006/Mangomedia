@@ -14,6 +14,8 @@ from pathlib import Path
 import os
 from os import getenv
 
+from dotenv import load_dotenv
+load_dotenv()  # take environment variables from .env.
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -77,12 +79,12 @@ WSGI_APPLICATION = 'Mangomedia_Project.wsgi.app'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
-    }
-}
+#DATABASES = {
+ #   "default": {
+ #       "ENGINE": "django.db.backends.sqlite3",
+ #       "NAME": BASE_DIR / "db.sqlite3",
+ #   }
+#}
 
 
 # Password validation
@@ -128,7 +130,6 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
-"""
 DATABASES = {
   'default': {
     'ENGINE': 'django.db.backends.postgresql',
@@ -140,6 +141,6 @@ DATABASES = {
     'OPTIONS': {
       'sslmode': 'require',
     },
+    'DISABLE_SERVER_SIDE_CURSORS': True,
   }
 }
-"""
