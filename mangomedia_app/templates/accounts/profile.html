@@ -1,7 +1,11 @@
-
+{% extends 'mangomedia_app/base.html'%}
+{% block content %}
 {% load account %}
-<h1>
-    {% user_display user %}
-</h1>
+<article>
+<h5>
+    Username: {% user_display user %}
+</h5>
 
 <a href="{% url 'account_logout' %}">Logout</a>
+</article>
+{% endblock %}

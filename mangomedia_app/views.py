@@ -12,3 +12,7 @@ def profile(request):
 
 def dummy(request):
     return render(request,'mangomedia_app/dummy.html')
+
+def create_post(request):
+    
+    return render(request,'mangomedia_app/create_post.html')
