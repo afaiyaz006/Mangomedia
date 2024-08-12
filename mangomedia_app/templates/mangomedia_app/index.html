@@ -36,7 +36,11 @@
                         <button class="outline secondary">Comment</button>
                     </footer>
                 </article>
-
+                {% load account %}
+                <h1>
+                    {% user_display user %}
+                </h1>
+                <a href="{% url 'account_logout' %}">Logout</a>
 
                 <div>
 

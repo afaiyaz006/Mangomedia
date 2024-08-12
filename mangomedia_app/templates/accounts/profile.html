@@ -1,0 +1,7 @@
+
+{% load account %}
+<h1>
+    {% user_display user %}
+</h1>
+
+<a href="{% url 'account_logout' %}">Logout</a>

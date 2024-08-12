@@ -6,3 +6,6 @@ from django.http import HttpResponse
 
 def index(request):
     return render(request,'mangomedia_app/index.html')
+
+def profile(request):
+    return render(request,'accounts/profile.html')

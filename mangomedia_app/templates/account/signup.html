@@ -1,0 +1,43 @@
+<head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.pumpkin.min.css">
+
+</head>
+{% load i18n %}
+{% load allauth account %}
+
+{% block content %}
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color-scheme" content="dark">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.pumpkin.min.css">
+    <title>Mango Media-Signup</title>
+</head>
+<body>
+    <main class="container">
+        
+        <div class="grid">
+            <div></div>
+            <article>
+                <h1>signup</h1>
+            <div class="signup-container">
+                <form method="post" action="{% url 'account_login' %}">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <div>
+                        <input type="submit" value="Signup" />
+                    </div>
+                </form>
+            </div>
+            
+            </article>
+            <div>
+                {% if SOCIALACCOUNT_ENABLED %}
+                {% include "socialaccount/snippets/login.html" with page_layout="entrance" %}
+            {% endif %}
+            </div>
+        </div>
+  </body>
+
+
+{% endblock %}
