@@ -17,24 +17,28 @@
     <main class="container">
         
         <div class="grid">
-            <div></div>
-            <article>
-                <h1>signup</h1>
+         
+            
             <div class="signup-container">
-                <form method="post" action="{% url 'account_login' %}">
-                    {% csrf_token %}
-                    {{ form.as_p }}
-                    <div>
-                        <input type="submit" value="Signup" />
-                    </div>
-                </form>
+                <article>
+                <h1>signup</h1>
+                    <form method="post" action="{% url 'account_login' %}">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                        <div>
+                            <input type="submit" value="Signup" />
+                        </div>
+                    </form>
+                </article>
+            
             </div>
             
-            </article>
             <div>
+                <article>
                 {% if SOCIALACCOUNT_ENABLED %}
                 {% include "socialaccount/snippets/login.html" with page_layout="entrance" %}
-            {% endif %}
+                {% endif %}
+                </article>
             </div>
         </div>
   </body>

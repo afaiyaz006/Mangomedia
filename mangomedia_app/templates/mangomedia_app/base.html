@@ -1,0 +1,40 @@
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color-scheme" content="dark">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.pumpkin.min.css">
+    <title>Mango Media</title>
+    <style>
+        :root {
+          --pico-border-radius: 2rem;
+          --pico-typography-spacing-vertical: 1.5rem;
+          --pico-form-element-spacing-vertical: 1rem;
+          --pico-form-element-spacing-horizontal: 1.25rem;
+        }
+        h1 {
+          --pico-font-family: Pacifico, cursive;
+          --pico-font-weight: 400;
+          --pico-typography-spacing-vertical: 0.3rem;
+        }
+        button {
+          --pico-font-weight: 700;
+        }
+      </style>
+  </head>
+  <body>
+    <main class="container">
+        <div class="grid">
+            <div></div>
+            <div>              
+                {% include "mangomedia_app/nav.html" %}
+                {% block content%}
+                {% endblock %}
+            </div>
+            
+            <div></div>
+            
+        </div>
+    </main>
+  </body>
+</html>

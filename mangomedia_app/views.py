@@ -9,3 +9,6 @@ def index(request):
 
 def profile(request):
     return render(request,'accounts/profile.html')
+
+def dummy(request):
+    return render(request,'mangomedia_app/dummy.html')
