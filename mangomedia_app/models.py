@@ -12,7 +12,7 @@ class Profile(models.Model):
 
 class MangoPost(models.Model):
     author = models.OneToOneField(User,on_delete=models.CASCADE)
-    title = models.TextField(max_length=100,blank=False)
+    title = models.TextField(max_length=100,blank=False,unique=True)
     post = models.TextField(max_length=255,blank=False) 
     
     

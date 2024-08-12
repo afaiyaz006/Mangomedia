@@ -1,0 +1,12 @@
+<div class="grid">
+
+<div>
+<article>
+    <form action = "" method = "post">
+        {% csrf_token %}
+        {{mango_form.as_p}}
+        <input type="submit" value="Post" />
+    </form>
+</article>
+</div>
+</div>
