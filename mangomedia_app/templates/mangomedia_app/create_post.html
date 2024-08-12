@@ -1,5 +1,5 @@
 <div class="grid">
-
+{% if not user.is_anonymous %}
 <div>
 <article>
     <form action = "" method = "post">
@@ -10,3 +10,4 @@
 </article>
 </div>
 </div>
+{% endif %}

@@ -1,22 +1,28 @@
 from django.shortcuts import render
-from .forms import MangoPostForm
+from mangomedia_app.forms import MangoPostForm
+from mangomedia_app.models import MangoPost
 # Create your views here.
 from django.http import HttpResponse
 
 
 def index(request):
-    if request.method == "POST":
-        form = MangoPostForm(request.POST)
-        if form.is_valid():
-   
-            mangopost=form.save(commit=False)
-            mangopost.author = request.user
-            mangopost.save()
+    mangoposts=None
+    form=None
+    if request.user.is_authenticated:
+        mangoposts = MangoPost.objects.all()
+        print(mangoposts)
+        if request.method == "POST":
+            form = MangoPostForm(request.POST)
+            if form.is_valid():
+    
+                mangopost=form.save(commit=False)
+                mangopost.author = request.user
+                mangopost.save()
+                form = MangoPostForm()
+        else:
             form = MangoPostForm()
-    else:
-        form = MangoPostForm()
             
-    return render(request,'mangomedia_app/index.html',{"mango_form":form})
+    return render(request,'mangomedia_app/index.html',{"mango_form":form,'mangoposts':mangoposts})
     
 
 def profile(request):

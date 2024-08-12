@@ -5,7 +5,8 @@
 <h5>
     Username: {% user_display user %}
 </h5>
-
+{% if not user.is_anonymous %}
 <a href="{% url 'account_logout' %}">Logout</a>
+{% endif %}
 </article>
 {% endblock %}
