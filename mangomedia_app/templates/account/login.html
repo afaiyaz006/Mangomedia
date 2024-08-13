@@ -15,7 +15,7 @@
 </head>
 <body>
     <main class="container">
-        
+        {% include 'mangomedia_app/nav.html' %}
         <div class="grid">
           
             <div>
@@ -29,15 +29,18 @@
                             <input type="submit" value="Log in" />
                         </div>
                     </form>
-                    <p>Dont have a account <a href="{{signup_url}}">Signup</a></p>
+                    <p>Dont have a account? <a href="{{signup_url}}">Signup</a></p>
                 </article>
             </div>
             <div>
                 <article>
                     {% if SOCIALACCOUNT_ENABLED %}
-                    <img src=""> {% include "socialaccount/snippets/login.html"  %}</img>
+                    {% load socialaccount %}
+                    <a href="{% provider_login_url "google" %}">
+                    <img src="https://developers.google.com/static/identity/images/branding_guideline_sample_dk_rd_lg.svg" height="250px" width="250px">
+                    </img>
+                    </a>
                     {% endif %}
-                    
                 </article>
             </div>
            <div></div>

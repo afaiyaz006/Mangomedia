@@ -1,39 +1,33 @@
 {% extends 'mangomedia_app/base.html' %}
 
-{% if not user.is_anonymous %}
-{% block content %}
-<div class="grid">
 
+{% block content %}
+{% if not user.is_anonymous %}
+<div class="grid"> 
+  <div class="aside">{% include 'mangomedia_app/create_post.html' %}</div>
   <div> 
     {% if mangoposts %}
-    {% for mangopost in mangoposts %}   
-               
+    <h3> Posts </h3>
     <article>
-      <header>
-          <h2>{{mangopost.author}} </h2>  
-          <h3>{{mangopost.title}}</h3>
-      </header>
-      <p class="overflow-auto">
-          {{mangopost.post}}
-      </p>
-      <footer>
-          <button class="outline secondary">Like</button>
-          <button class="outline secondary">Comment</button>
-      </footer>
+     
+      <!--single instance-->
+      {% include 'mangomedia_app/mangoposts_list.html' with mangoposts=mangoposts %}
+
     </article>
-    {% endfor %} 
-    {% endif %} 
+    {% endif %}
   </div>
-  
-  <div>{% include 'mangomedia_app/create_post.html' %}</div>
-  {% load account %}
-    <h1>
-      {% user_display user %}
-    </h1>
-    
-  
 </div>
-
-
+{% else %}
+<div class="grid">
+<div></div>
+<article>
+  <h1> hello stranger 👋 </h1>
+  Please login or signup to continue....
+  <button class="outline"><a href="{% url 'account_login' %}">Login</a></button>
+  <button class="outline secondary"><a href="{% url 'account_signup' %}">Signup</a></button>
+  
+  </article>
+<div></div>
+</div>
+{% endif%}
 {% endblock %}
-{% endif %}

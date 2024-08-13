@@ -15,14 +15,24 @@
 </head>
 <body>
     <main class="container">
-        
+        {% include 'mangomedia_app/nav.html' %}
+
         <div class="grid">
          
             
             <div class="signup-container">
                 <article>
+                    {% if SOCIALACCOUNT_ENABLED %}
+                    {% load socialaccount %}
+                    <a href="{% provider_login_url "google" %}">
+                    <img src="https://developers.google.com/static/identity/images/branding_guideline_sample_dk_rd_lg.svg" height="250px" width="250px">
+                    </img>
+                    </a>
+                    {% endif %}
+                </article>
+                <article>
                 <h1>signup</h1>
-                    <form method="post" action="{% url 'account_login' %}">
+                    <form method="post" action="{% url 'account_signup' %}">
                         {% csrf_token %}
                         {{ form.as_p }}
                         <div>
@@ -30,15 +40,11 @@
                         </div>
                     </form>
                 </article>
-            
+                
             </div>
             
             <div>
-                <article>
-                {% if SOCIALACCOUNT_ENABLED %}
-                {% include "socialaccount/snippets/login.html" with page_layout="entrance" %}
-                {% endif %}
-                </article>
+                
             </div>
         </div>
   </body>

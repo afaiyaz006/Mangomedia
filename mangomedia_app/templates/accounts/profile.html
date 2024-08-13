@@ -1,12 +1,25 @@
-{% extends 'mangomedia_app/base.html'%}
-{% block content %}
-{% load account %}
+{% extends 'mangomedia_app/base.html'%} {% block content %} {% load account %}
+<div class="grid">
 <article>
-<h5>
-    Username: {% user_display user %}
-</h5>
-{% if not user.is_anonymous %}
-<a href="{% url 'account_logout' %}">Logout</a>
-{% endif %}
+  <h1>
+    <table>
+      <tr>
+        <th> Username: </th>
+        <td>{% user_display user %}</td>
+      </tr>
+      <tr>
+        <th> Email: </th>
+        <td>{{user.email}}</td>
+      </tr>
+    </table>
+  </h1>
+</div>
+  {% if not user.is_anonymous %}
+  <div class="grid">
+    <div></div>
+  <button class="outline"><a href="{% url 'account_logout' %}">Logout</a></button>
+  {% endif %}
+  <div></div>
+  </div>
 </article>
 {% endblock %}
