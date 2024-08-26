@@ -2,10 +2,10 @@
 {% if not user.is_anonymous %}
 <div>
 <article>
-    <form action = "" method = "post">
+    <form method = "post">
         {% csrf_token %}
         {{mango_form.as_p}}
-        <input type="submit" value="Post" />
+        <button type="submit">Post</button>
     </form>
 </article>
 </div>

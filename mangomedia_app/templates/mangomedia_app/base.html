@@ -22,7 +22,7 @@
         }
       </style>
   </head>
-  <body>
+  <body hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'>
     <main class="container">
         {% include "mangomedia_app/nav.html" %}
         {% block content%}

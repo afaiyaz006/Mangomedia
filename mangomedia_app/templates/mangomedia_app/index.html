@@ -1,33 +1,79 @@
 {% extends 'mangomedia_app/base.html' %}
 
-
 {% block content %}
-{% if not user.is_anonymous %}
-<div class="grid"> 
-  <div class="aside">{% include 'mangomedia_app/create_post.html' %}</div>
-  <div> 
-    {% if mangoposts %}
-    <h3> Posts </h3>
-    <article>
-     
-      <!--single instance-->
-      {% include 'mangomedia_app/mangoposts_list.html' with mangoposts=mangoposts %}
+  <nav class="container-fluid">
+    
+    <ul>
+      {% if user.is_authenticated %}
+        <li>Welcome, {{ user.username }}!</li>
+       
+      {% else %}
+      <article>
+        <h1> hello stranger 👋 </h1>
+        Please login or signup to continue....
+        <button class="outline"><a href="{% url 'account_login' %}">Login</a></button>
+        <button class="outline secondary"><a href="{% url 'account_signup' %}">Signup</a></button>
+        
+      </article>
+      {% endif %}
+    </ul>
+  </nav>
 
-    </article>
+  <main class="container">
+    <div class="grid">
+
+    {% if user.is_authenticated %}
+    <div>  
+    <section>
+        <h2>Create a new Mango Post</h2>
+        <form method="post">
+          {% csrf_token %}
+          {{ mango_form.as_p }}
+          <button type="submit">Create Post</button>
+        </form>
+      </section>
+    </div>
     {% endif %}
-  </div>
-</div>
-{% else %}
-<div class="grid">
-<div></div>
-<article>
-  <h1> hello stranger 👋 </h1>
-  Please login or signup to continue....
-  <button class="outline"><a href="{% url 'account_login' %}">Login</a></button>
-  <button class="outline secondary"><a href="{% url 'account_signup' %}">Signup</a></button>
-  
-  </article>
-<div></div>
-</div>
-{% endif%}
+    <div>
+    <section>
+      <h2>Mango Posts</h2>
+      {% include 'mangomedia_app/partials/post_list.html' %}
+      
+    </section>
+    <!--
+    {% if mangoposts.has_other_pages %}
+    -->  
+    <!--nav>
+        <ul>
+          {% if mangoposts.has_previous %}
+            <li><a href="?page={{ mangoposts.previous_page_number }}">&laquo; Previous</a></li>
+          {% endif %}
+
+          {% for i in mangoposts.paginator.page_range %}
+            {% if mangoposts.number == i %}
+              <li><a href="#" aria-current="page">{{ i }}</a></li>
+            {% else %}
+              <li><a href="?page={{ i }}">{{ i }}</a></li>
+            {% endif %}
+          {% endfor %}
+
+          {% if mangoposts.has_next %}
+            <li><a href="?page={{ mangoposts.next_page_number }}">Next &raquo;</a></li>
+          {% endif %}
+        </ul>
+      </nav-->
+      {% if mangoposts.has_next %}
+      <button hx-get="{% url 'load_more_posts' %}?page={{ mangoposts.next_page_number }}"
+              hx-target="#mango-posts"
+              hx-swap="beforeend"
+              hx-trigger="click, revealed"
+              hx-indicator="#loading-indicator">
+        Load More
+      </button>
+      <div id="loading-indicator" class="htmx-indicator">Loading...</div>
+      {% endif %}
+    {% endif %}
+    </div>
+    </div>
+  </main>
 {% endblock %}

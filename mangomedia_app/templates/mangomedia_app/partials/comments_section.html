@@ -1,0 +1,15 @@
+<div id="comments-{{ post.id }}">
+    <h3>Comments ({{ post.comments.count }})</h3>
+    {% for comment in post.comments.all %}
+        <div class="comment">
+            <p>{{ comment.content }}</p>
+            <p>By {{ comment.author.username }} on {{ comment.created_at }}</p>
+        </div>
+    {% endfor %}
+    
+    <form hx-post="{% url 'add_comment' post.id %}" hx-target="#comments-{{ post.id }}" hx-swap="outerHTML">
+        {% csrf_token %}
+        {{ comment_form }}
+        <button type="submit">Add Comment</button>
+    </form>
+</div>

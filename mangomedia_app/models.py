@@ -11,8 +11,20 @@ class Profile(models.Model):
 
 
 class MangoPost(models.Model):
-    author = models.ManyToManyField(User)
-    title = models.TextField(max_length=100,blank=False,unique=True)
-    post = models.TextField(max_length=255,blank=False) 
-    
-    
+    title = models.CharField(max_length=200)
+    content = models.TextField()
+    author = models.ManyToManyField(User, related_name='mangoposts')
+    created_at = models.DateTimeField(auto_now_add=True)
+    likes = models.ManyToManyField(User, related_name='liked_posts', blank=True)
+
+    def __str__(self):
+        return self.title
+
+class Comment(models.Model):
+    post = models.ForeignKey(MangoPost, on_delete=models.CASCADE, related_name='comments')
+    author = models.ForeignKey(User, on_delete=models.CASCADE)
+    content = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"Comment by {self.author.username} on {self.post.title}"
