@@ -1,0 +1,6 @@
+{% extends 'mangomedia_app/base.html' %}
+
+{% block content %}
+{% include 'mangomedia_app/partials/post_detail.html' with post=post comment_form=comment_form user=user%}
+
+{% endblock %}

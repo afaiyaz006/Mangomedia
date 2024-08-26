@@ -1,13 +1,26 @@
 <div id='mango-posts'>
 {% for post in mangoposts %}
+
   <article>
     <header>
-      <h3>{{ post.title }}</h3>
+      
+      <h5>{{ post.title }}</h5>
       <p>By {% for author in post.author.all %}{{ author.username }}{% if not forloop.last %}, {% endif %}{% endfor %} on {{ post.created_at }}</p>
     </header>
-    <p>{{ post.content }}</p>
-    {% include 'mangomedia_app/partials/like_button.html' with post=post user=user %}
-    {% include 'mangomedia_app/partials/comments_section.html' with post=post comment_form=comment_form %}
+      
+        <p>{{ post.content }}</p>
+        <p>{% include 'mangomedia_app/partials/like_button.html' with post=post user=user %}</p>
+        <p>{% include 'mangomedia_app/partials/comments_section.html' with post=post comment_form=comment_form %}</p>
+        <a href="{% url 'view_post' post.id %}" class="button outline primary">
+        <div class="grid">
+          <div></div>
+          <button>
+          Detail
+        </button>
+        <div></div>
+        </div>
+        </a>
+    
   </article>
 
 {% empty %}

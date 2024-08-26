@@ -4,8 +4,8 @@ from mangomedia_app.models import MangoPost, Comment
 from django.core.paginator import Paginator
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponse
 from django.core.paginator import Paginator
+from django.views.decorators.http import require_http_methods
 
 def index(request):
     mangoposts = None
@@ -86,22 +86,6 @@ def create_post(request):
             
     return render(request, 'mangomedia_app/create_post.html', {"mango_form": form})
 
-def mango_posts(request):
-    mangoposts = None
-    if request.method == "GET":
-        mangoposts = MangoPost.objects.all().order_by('-created_at')
-        mangoposts_paginated = Paginator(mangoposts, 10)  # Changed to 10 posts per page
-        page_number = request.GET.get("page")
-        mangoposts = mangoposts_paginated.get_page(page_number)
-    return render(request, 'mangomedia_app/mangoposts_list.html', {'mangoposts': mangoposts})
-
-
-
-from django.core.paginator import Paginator
-from django.shortcuts import render
-
-# ... existing imports and views ...
-
 def load_more_posts(request):
     page_number = request.GET.get('page', 1)
    
@@ -110,3 +94,28 @@ def load_more_posts(request):
     mangoposts = paginator.get_page(page_number)
     
     return render(request, 'mangomedia_app/partials/post_list.html', {'mangoposts': mangoposts})
+
+def view_post(request, post_id):
+    post = get_object_or_404(MangoPost, id=post_id)
+    comment_form = CommentForm()
+    context = {
+        'post': post,
+        'comment_form': comment_form,
+        'user': request.user,
+    }
+    return render(request, 'mangomedia_app/detail_view.html', context)
+
+@require_http_methods(["GET", "POST"])
+def edit_post(request, post_id):
+    success=False
+    post = get_object_or_404(MangoPost, id=post_id)
+    if request.method == "POST":
+        success=True
+        form = MangoPostForm(request.POST, instance=post)
+        if form.is_valid():
+            form.save()
+            form = MangoPostForm(instance=post)
+            return render(request, 'mangomedia_app/partials/post_detail.html', {'post': post,'success':success})
+    else:
+        form = MangoPostForm(instance=post)
+    return render(request, 'mangomedia_app/partials/edit_post.html', {'form': form, 'post': post})

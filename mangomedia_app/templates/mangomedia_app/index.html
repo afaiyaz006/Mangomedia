@@ -26,12 +26,14 @@
     <div>  
     <section>
         <h2>Create a new Mango Post</h2>
+        <article>
         <form method="post">
           {% csrf_token %}
           {{ mango_form.as_p }}
           <button type="submit">Create Post</button>
         </form>
-      </section>
+        </article>
+    </section>
     </div>
     {% endif %}
     <div>
@@ -40,30 +42,8 @@
       {% include 'mangomedia_app/partials/post_list.html' %}
       
     </section>
-    <!--
-    {% if mangoposts.has_other_pages %}
-    -->  
-    <!--nav>
-        <ul>
-          {% if mangoposts.has_previous %}
-            <li><a href="?page={{ mangoposts.previous_page_number }}">&laquo; Previous</a></li>
-          {% endif %}
-
-          {% for i in mangoposts.paginator.page_range %}
-            {% if mangoposts.number == i %}
-              <li><a href="#" aria-current="page">{{ i }}</a></li>
-            {% else %}
-              <li><a href="?page={{ i }}">{{ i }}</a></li>
-            {% endif %}
-          {% endfor %}
-
-          {% if mangoposts.has_next %}
-            <li><a href="?page={{ mangoposts.next_page_number }}">Next &raquo;</a></li>
-          {% endif %}
-        </ul>
-      </nav-->
-      {% if mangoposts.has_next %}
-      <button hx-get="{% url 'load_more_posts' %}?page={{ mangoposts.next_page_number }}"
+    {% if mangoposts.has_next %}
+    <button hx-get="{% url 'load_more_posts' %}?page={{ mangoposts.next_page_number }}"
               hx-target="#mango-posts"
               hx-swap="beforeend"
               hx-trigger="click, revealed"
@@ -72,7 +52,7 @@
       </button>
       <div id="loading-indicator" class="htmx-indicator">Loading...</div>
       {% endif %}
-    {% endif %}
+  
     </div>
     </div>
   </main>

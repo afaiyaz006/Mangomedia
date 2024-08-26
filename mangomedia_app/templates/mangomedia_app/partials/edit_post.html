@@ -1,0 +1,31 @@
+{% if success %}
+<dialog open id='successDialog'>
+    <article>
+        <header>
+          <button aria-label="Close" rel="prev"></button>
+          <p>
+            <strong>Updated!</strong>
+          </p>
+        </header>
+        <p>
+          Post updated successfully!
+        </p>
+        <footer>
+          <button class="secondary" onclick="closeDialog()">
+            Done
+          </button>
+        </footer>
+    </article>
+</dialog>
+{% endif %}
+<form hx-post="{% url 'edit_post' post.id %}" hx-target="#post-detail">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="outline">Save</button>
+    <button hx-get="{% url 'view_post' post.id %}" hx-target="#post-detail" class="outline secondary">Go Back</button>
+</form>
+<script>
+    function closeDialog() {
+        document.getElementById('successDialog').close();
+    }
+</script>

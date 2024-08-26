@@ -1,0 +1,22 @@
+<div id="post-detail">
+  <article>
+    <header>
+      <h2>{{ post.title }}</h2>
+      <a href="{% url 'index' %}" class="button outline primary">Return to Home</a>
+      <p>By {% for author in post.author.all %}{{ author.username }}{% if not forloop.last %}, {% endif %}{% endfor %} on {{ post.created_at }}</p>
+    
+      <div class="post-actions">
+        <button hx-get="{% url 'edit_post' post.id %}" hx-target="#post-detail">Edit</button>
+      </div>
+    </header>
+    
+    <p>{{ post.content }}</p>
+    
+    {% include 'mangomedia_app/partials/like_button.html' with post=post user=user %}
+    
+    
+    {% include 'mangomedia_app/partials/comments_section.html' with post=post comment_form=comment_form %}
+    
+    
+  </article>
+</div>
