@@ -4,10 +4,11 @@
       <h2>{{ post.title }}</h2>
       <a href="{% url 'index' %}" class="button outline primary">Return to Home</a>
       <p>By {% for author in post.author.all %}{{ author.username }}{% if not forloop.last %}, {% endif %}{% endfor %} on {{ post.created_at }}</p>
-    
+      {% if post.author.all.0.id == user.id %}
       <div class="post-actions">
         <button hx-get="{% url 'edit_post' post.id %}" hx-target="#post-detail">Edit</button>
       </div>
+      {% endif %}
     </header>
     
     <p>{{ post.content }}</p>
