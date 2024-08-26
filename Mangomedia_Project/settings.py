@@ -102,7 +102,7 @@ ACCOUNT_USERNAME_REQUIRED = True
 ACCOUNT_EMAIL_VERIFICATION = "none" # for now
 #WSGI_APPLICATION = "Mangomedia_Project.wsgi.application"
 WSGI_APPLICATION = 'Mangomedia_Project.wsgi.app'
-
+LOGIN_REDIRECT_URL = '/accounts/profile'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
