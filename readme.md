@@ -2,6 +2,9 @@
 
 MangoMedia is a social media platform built with Django, allowing users to post text, like content, and engage in discussions.
 
+## Live Demo
+Check out the live version of the app: [mangomedia.vercel.app](https://mangomedia.vercel.app)
+
 ## Features
 
 - User authentication
