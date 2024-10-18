@@ -5,6 +5,11 @@ MangoMedia is a lightweight, user-friendly microblogging platform that allows us
 ## Live Demo
 Check out the live version of the app: [mangomedia.vercel.app](https://mangomedia.vercel.app)
 
+## Screenshots
+![Screenshot-1](https://ibb.co/zrSRkZF)
+![Screenshot-2](https://ibb.co/yfTr9cD)
+![Screenshot-3](https://ibb.co/NL7GKJ1)
+
 ## Features
 
 - User authentication
